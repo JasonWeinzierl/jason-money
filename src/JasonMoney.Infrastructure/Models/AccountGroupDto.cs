@@ -1,12 +1,11 @@
 ﻿using JasonMoney.Domain.Accounts;
 
-namespace JasonMoney.Infrastructure.Models
+namespace JasonMoney.Infrastructure.Models;
+
+internal record AccountGroupDto(
+    int Id,
+    string Name)
 {
-    internal record AccountGroupDto(
-        int Id,
-        string Name)
-    {
-        public AccountGroup ToDomainModel()
-            => new(Id, Name);
-    }
+    public AccountGroup ToDomainModel()
+        => new(Id, Name);
 }

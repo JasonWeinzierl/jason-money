@@ -1,16 +1,15 @@
 ﻿using System.Windows;
 
-namespace JasonMoney.UiApp
+namespace JasonMoney.UiApp;
+
+/// <summary>
+/// Interaction logic for OptionsWindow.xaml
+/// </summary>
+public partial class OptionsWindow : Window, ICloseable
 {
-    /// <summary>
-    /// Interaction logic for OptionsWindow.xaml
-    /// </summary>
-    public partial class OptionsWindow : Window, ICloseable
+    public OptionsWindow()
     {
-        public OptionsWindow()
-        {
-            InitializeComponent();
-            DataContext = App.Current.GetViewModel<OptionsViewModel>();
-        }
+        InitializeComponent();
+        DataContext = App.Current.GetViewModel<OptionsViewModel>();
     }
 }

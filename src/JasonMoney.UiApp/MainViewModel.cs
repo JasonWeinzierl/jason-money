@@ -4,37 +4,36 @@ using Microsoft.Extensions.Hosting;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace JasonMoney.UiApp
+namespace JasonMoney.UiApp;
+
+public partial class MainViewModel : ObservableObject
 {
-    public partial class MainViewModel : ObservableObject
+    private readonly IHostApplicationLifetime _lifetime;
+    private readonly INavigationService _navService;
+
+    public MainViewModel(
+        IHostApplicationLifetime lifetime,
+        INavigationService navService)
     {
-        private readonly IHostApplicationLifetime _lifetime;
-        private readonly INavigationService _navService;
+        _lifetime = lifetime;
+        _navService = navService;
+    }
 
-        public MainViewModel(
-            IHostApplicationLifetime lifetime,
-            INavigationService navService)
-        {
-            _lifetime = lifetime;
-            _navService = navService;
-        }
+    [RelayCommand]
+    private void ShowAbout()
+    {
+        _navService.ShowAboutPopup();
+    }
 
-        [RelayCommand]
-        private void ShowAbout()
-        {
-            _navService.ShowAboutPopup();
-        }
+    [RelayCommand]
+    private async Task ShowOptions(CancellationToken cancellationToken)
+    {
+        await _navService.ShowOptionsPopup(cancellationToken);
+    }
 
-        [RelayCommand]
-        private async Task ShowOptions(CancellationToken cancellationToken)
-        {
-            await _navService.ShowOptionsPopup(cancellationToken);
-        }
-
-        [RelayCommand]
-        private void CloseWindow()
-        {
-            _lifetime.StopApplication();
-        }
+    [RelayCommand]
+    private void CloseWindow()
+    {
+        _lifetime.StopApplication();
     }
 }

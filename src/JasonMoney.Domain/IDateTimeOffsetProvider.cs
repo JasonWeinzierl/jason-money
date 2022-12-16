@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace JasonMoney.Domain
+namespace JasonMoney.Domain;
+
+public interface IDateTimeOffsetProvider
 {
-    public interface IDateTimeOffsetProvider
-    {
-        DateTimeOffset Now();
-    }
+    DateTimeOffset Now();
 }

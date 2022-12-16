@@ -1,16 +1,15 @@
 ﻿using System.Windows;
 
-namespace JasonMoney.UiApp
+namespace JasonMoney.UiApp;
+
+/// <summary>
+/// Interaction logic for AboutWindow.xaml
+/// </summary>
+public partial class AboutWindow : Window, ICloseable
 {
-    /// <summary>
-    /// Interaction logic for AboutWindow.xaml
-    /// </summary>
-    public partial class AboutWindow : Window, ICloseable
+    public AboutWindow()
     {
-        public AboutWindow()
-        {
-            InitializeComponent();
-            DataContext = App.Current.GetViewModel<AboutViewModel>();
-        }
+        InitializeComponent();
+        DataContext = App.Current.GetViewModel<AboutViewModel>();
     }
 }

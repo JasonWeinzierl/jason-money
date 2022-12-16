@@ -1,16 +1,15 @@
 ﻿using System.Windows.Controls;
 
-namespace JasonMoney.UiApp
+namespace JasonMoney.UiApp;
+
+/// <summary>
+/// Interaction logic for AccountsSummaryPage.xaml
+/// </summary>
+public partial class AccountsSummaryPage : Page
 {
-    /// <summary>
-    /// Interaction logic for AccountsSummaryPage.xaml
-    /// </summary>
-    public partial class AccountsSummaryPage : Page
+    public AccountsSummaryPage()
     {
-        public AccountsSummaryPage()
-        {
-            InitializeComponent();
-            DataContext = App.Current.GetViewModel<AccountsSummaryViewModel>();
-        }
+        InitializeComponent();
+        DataContext = App.Current.GetViewModel<AccountsSummaryViewModel>();
     }
 }

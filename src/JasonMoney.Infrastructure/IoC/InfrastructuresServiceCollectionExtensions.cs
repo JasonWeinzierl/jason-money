@@ -8,24 +8,23 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using System.Data.Common;
 
-namespace JasonMoney.Infrastructure.IoC
+namespace JasonMoney.Infrastructure.IoC;
+
+public static class InfrastructuresServiceCollectionExtensions
 {
-    public static class InfrastructuresServiceCollectionExtensions
+    public static IServiceCollection AddInfra(this IServiceCollection services)
     {
-        public static IServiceCollection AddInfra(this IServiceCollection services)
-        {
-            DbProviderFactories.RegisterFactory(DbConstants.SqlClientProviderName, SqlClientFactory.Instance);
+        DbProviderFactories.RegisterFactory(DbConstants.SqlClientProviderName, SqlClientFactory.Instance);
 
-            services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
-            services.AddSingleton<IDbExecuter, DapperExecuter>();
+        services.AddSingleton<ISqlConnectionFactory, SqlConnectionFactory>();
+        services.AddSingleton<IDbExecuter, DapperExecuter>();
 
-            services.AddSingleton<IEntryRepository, EntryRepository>();
-            services.AddSingleton<IAccountRepository, AccountRepository>();
-            services.AddSingleton<IPayeeRepository, PayeeRepository>();
-            services.AddSingleton<ICategoryRepository, CategoryRepository>();
-            services.AddSingleton<IAccountGroupRepository, AccountGroupRepository>();
+        services.AddSingleton<IEntryRepository, EntryRepository>();
+        services.AddSingleton<IAccountRepository, AccountRepository>();
+        services.AddSingleton<IPayeeRepository, PayeeRepository>();
+        services.AddSingleton<ICategoryRepository, CategoryRepository>();
+        services.AddSingleton<IAccountGroupRepository, AccountGroupRepository>();
 
-            return services;
-        }
+        return services;
     }
 }

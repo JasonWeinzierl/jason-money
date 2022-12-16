@@ -7,20 +7,19 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace JasonMoney.UiApp
+namespace JasonMoney.UiApp;
+
+public class AccountsSummaryViewModel : ObservableObject, IActivatable
 {
-    public class AccountsSummaryViewModel : ObservableObject, IActivatable
+    private readonly IAccountRepository _accountRepo;
+
+    public AccountsSummaryViewModel(IAccountRepository accountRepo)
     {
-        private readonly IAccountRepository _accountRepo;
+        _accountRepo = accountRepo;
+    }
 
-        public AccountsSummaryViewModel(IAccountRepository accountRepo)
-        {
-            _accountRepo = accountRepo;
-        }
-
-        public Task ActivateAsync(CancellationToken cancellationToken = default)
-        {
-            throw new NotImplementedException();
-        }
+    public Task ActivateAsync(CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
     }
 }
