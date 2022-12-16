@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>JasonMoney.SSDT</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{1ae3883d-6740-4dee-bb82-c08c172628cb}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>JAW.Ledger.SSDT</RootNamespace>
+    <AssemblyName>JAW.Ledger.SSDT</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <GenerateCreateScript>True</GenerateCreateScript>
+    <TargetFrameworkProfile />
+    <DefaultCollation>Latin1_General_100_CI_AS_SC_UTF8</DefaultCollation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <SqlTargetName>JasonMoney</SqlTargetName>
+    <TreatTSqlWarningsAsErrors>True</TreatTSqlWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatTSqlWarningsAsErrors>True</TreatTSqlWarningsAsErrors>
+    <SqlTargetName>JasonMoney</SqlTargetName>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo" />
+    <Folder Include="accounts" />
+    <Folder Include="entries" />
+    <Folder Include="categories" />
+    <Folder Include="Security" />
+    <Folder Include="accounts\Tables" />
+    <Folder Include="accounts\Views" />
+    <Folder Include="categories\Tables" />
+    <Folder Include="categories\Views" />
+    <Folder Include="entries\Tables" />
+    <Folder Include="entries\Stored Procedures" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\PostDeployment" />
+    <Folder Include="entries\Views" />
+    <Folder Include="accounts\Stored Procedures" />
+    <Folder Include="categories\Stored Procedures" />
+    <Folder Include="entries\User Defined Types" />
+    <Folder Include="payees" />
+    <Folder Include="payees\Stored Procedures" />
+    <Folder Include="payees\Tables" />
+    <Folder Include="payees\Views" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\User Defined Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\accounts.sql" />
+    <Build Include="accounts\Stored Procedures\Account_GetById.sql" />
+    <Build Include="accounts\Stored Procedures\Account_Insert.sql" />
+    <Build Include="accounts\Stored Procedures\_SetAccountRevision.sql" />
+    <Build Include="accounts\Stored Procedures\Account_Update.sql" />
+    <Build Include="accounts\Stored Procedures\Account_Delete.sql" />
+    <Build Include="accounts\Stored Procedures\Account_GetAll.sql" />
+    <Build Include="accounts\Tables\Account.sql" />
+    <Build Include="accounts\Tables\AccountGroup.sql" />
+    <Build Include="accounts\Tables\AccountRevision.sql" />
+    <Build Include="accounts\Tables\AccountClosure.sql" />
+    <Build Include="accounts\Views\Account_View.sql" />
+    <Build Include="Security\categories.sql" />
+    <Build Include="categories\Stored Procedures\Category_GetByAccount.sql" />
+    <Build Include="categories\Stored Procedures\_SetCategoryRevision.sql" />
+    <Build Include="categories\Stored Procedures\Category_Insert.sql" />
+    <Build Include="categories\Stored Procedures\Category_GetById.sql" />
+    <Build Include="categories\Stored Procedures\Category_Update.sql" />
+    <Build Include="categories\Tables\Category.sql" />
+    <Build Include="categories\Tables\CategoryRevision.sql" />
+    <Build Include="categories\Views\Category_View.sql" />
+    <Build Include="Security\entries.sql" />
+    <Build Include="entries\Stored Procedures\EntryTransaction_GetPageByAccount.sql" />
+    <Build Include="entries\Stored Procedures\Entry_Insert.sql" />
+    <Build Include="entries\Stored Procedures\Entry_UpdateDetails.sql" />
+    <Build Include="entries\Stored Procedures\Entry_UpdateStatus.sql" />
+    <Build Include="entries\Stored Procedures\_SetEntryStatus.sql" />
+    <Build Include="entries\Stored Procedures\_SetEntryRevision.sql" />
+    <Build Include="entries\Stored Procedures\EntryTransaction_GetByEntryId.sql" />
+    <Build Include="entries\Tables\Entry.sql" />
+    <Build Include="entries\Tables\EntryRevision.sql" />
+    <Build Include="entries\Tables\EntryStatusChange.sql" />
+    <Build Include="entries\Tables\EntryTransaction.sql" />
+    <Build Include="entries\User Defined Types\EntryTransactionRequest.sql" />
+    <Build Include="entries\Views\EntryTransaction_View.sql" />
+    <Build Include="Security\payees.sql" />
+    <Build Include="payees\Tables\Payee.sql" />
+    <Build Include="payees\Tables\PayeeRevision.sql" />
+    <Build Include="payees\Views\Payee_View.sql" />
+    <Build Include="payees\Stored Procedures\Payee_GetByPayerAccount.sql" />
+    <Build Include="payees\Stored Procedures\Payee_Insert.sql" />
+    <Build Include="payees\Stored Procedures\_SetPayeeRevision.sql" />
+    <Build Include="payees\Stored Procedures\Payee_GetById.sql" />
+    <Build Include="payees\Stored Procedures\Payee_Update.sql" />
+    <Build Include="dbo\Functions\IsAlphanumeric.sql" />
+    <Build Include="dbo\User Defined Types\GuidIdRequest.sql" />
+    <Build Include="accounts\Stored Procedures\_SetGroupRevision.sql" />
+    <Build Include="accounts\Tables\AccountGroupRevision.sql" />
+    <Build Include="accounts\Views\AccountGroup_View.sql" />
+    <Build Include="accounts\Stored Procedures\AccountGroup_GetById.sql" />
+    <Build Include="dbo\User Defined Types\IntIdRequest.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
+</Project>

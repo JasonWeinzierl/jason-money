@@ -1,0 +1,4 @@
+﻿CREATE TABLE [entries].[Entry]
+(
+	[Id] BIGINT IDENTITY(1,1) CONSTRAINT PK_Entry PRIMARY KEY,
+);

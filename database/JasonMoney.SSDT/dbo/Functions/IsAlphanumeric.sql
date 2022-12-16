@@ -1,0 +1,8 @@
+﻿CREATE FUNCTION IsAlphanumeric(@input VARCHAR(MAX))
+RETURNS BIT
+AS
+BEGIN
+	IF @input NOT LIKE '%[^a-z0-9-]%'
+		RETURN 1;
+	RETURN 0;
+END;

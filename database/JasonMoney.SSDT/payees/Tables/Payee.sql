@@ -1,0 +1,4 @@
+﻿CREATE TABLE [payees].[Payee]
+(
+	[Id] BIGINT IDENTITY(1,1) CONSTRAINT PK_Payee PRIMARY KEY,
+);

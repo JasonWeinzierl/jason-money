@@ -1,0 +1,27 @@
+﻿<Window x:Class="JasonMoney.UiApp.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JasonMoney.UiApp"
+        mc:Ignorable="d"
+        Title="About"
+        ResizeMode="NoResize"
+        Height="230"
+        Width="270"
+        WindowStartupLocation="CenterOwner"
+        d:DataContext="{d:DesignInstance Type=local:AboutViewModel}">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" Margin="5" Text="{Binding Name}" />
+        <TextBlock HorizontalAlignment="Center" Margin="5" Text="{Binding Version}" />
+        <TextBlock HorizontalAlignment="Center" Margin="5" Text="{Binding Copyright}" />
+        <TextBox IsReadOnly="True" BorderThickness="0" HorizontalAlignment="Center" Margin="5">https://www.jasonweinzierl.com</TextBox>
+        <TextBlock HorizontalAlignment="Center" Margin="5" Text="{Binding BuildConfiguration}" />
+        <Separator Margin="15" />
+        <Button IsDefault="True"
+                Width="75"
+                HorizontalContentAlignment="Center"
+                Command="{Binding CloseCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">OK</Button>
+    </StackPanel>
+</Window>

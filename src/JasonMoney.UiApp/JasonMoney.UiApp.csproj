@@ -1,0 +1,30 @@
+﻿<!-- Worker SDK will copy the appsettings.json for us. -->
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup Label="dotnet">
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <AssemblyTitle>Jason Money</AssemblyTitle>
+    <Copyright>Unpublished work © 2022 Jason Weinzierl</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Label="wpf">
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <!-- Must disable this or else Program.cs entrypoint will not work with WPF. -->
+    <EnableDefaultApplicationDefinition>false</EnableDefaultApplicationDefinition>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0-preview2" />
+    <PackageReference Include="Dapplo.Microsoft.Extensions.Hosting.Wpf" Version="1.0.4" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JasonMoney.Domain\JasonMoney.Domain.csproj" />
+    <ProjectReference Include="..\JasonMoney.Infrastructure\JasonMoney.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
