@@ -1,0 +1,16 @@
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+    paths:
+      - database/**
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: microsoft/setup-msbuild@v1.1
+      - run: msbuild database/JasonMoney.SSDT/JasonMoney.SSDT.sqlproj --verbosity:diag -property:Configuration=Release
