@@ -20,6 +20,12 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private async Task Initialize(CancellationToken cancellationToken)
+    {
+        await Task.Delay(1000, cancellationToken);
+    }
+
+    [RelayCommand]
     private void ShowAbout()
     {
         _navService.ShowAboutPopup();

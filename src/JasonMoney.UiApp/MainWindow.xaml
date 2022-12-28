@@ -12,6 +12,19 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
         d:DataContext="{d:DesignInstance Type=local:MainViewModel}">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Initialized">
+            <i:InvokeCommandAction Command="{Binding InitializeCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:AccountsSummaryViewModel}">
+            <local:AccountsSummaryControl />
+        </DataTemplate>
+    </Window.Resources>
+    
     <DockPanel>
 
         <Menu DockPanel.Dock="Top">
@@ -40,11 +53,7 @@
             </MenuItem>
         </Menu>
 
-        <Frame>
-            <Frame.Content>
-                <local:AccountsSummaryPage />
-            </Frame.Content>
-        </Frame>
+        <ContentControl />
 
     </DockPanel>
 </Window>
