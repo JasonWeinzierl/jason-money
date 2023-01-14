@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [accounts].[Account_Insert]
-	@id UNIQUEIDENTIFIER,
+	@accountUid UNIQUEIDENTIFIER,
 
 	@name NVARCHAR(4000),
-	@groupId INT NULL,
+	@groupUid UNIQUEIDENTIFIER NULL,
 	@bankSwift CHAR(11) NULL,
 	@externalId NVARCHAR(MAX) NULL,
 	@currencyCode CHAR(3),
@@ -10,6 +10,16 @@
 AS
 BEGIN;
 	SET XACT_ABORT, NOCOUNT ON;
+    
+    DECLARE @_groupId INT = NULL;
+    IF @groupUid IS NOT NULL
+    BEGIN;
+        SELECT @_groupId = [Id] FROM [accounts].[AccountGroup] WHERE [Uid] = @groupUid;
+	    IF @_groupId IS NULL
+	    BEGIN
+		    ;THROW 50002, 'The group does not exist.', 1;
+	    END;
+    END;
 
 	DECLARE @_inNestedTransaction BIT;
 
@@ -25,14 +35,18 @@ BEGIN;
 			SET @_inNestedTransaction = 1;
 		END;
 
+
 		INSERT INTO
 				[accounts].[Account]
-				([Id])
-		VALUES	(@id);
+				([Uid])
+		VALUES	(@accountUid);
 
-		EXEC	[accounts].[_SetAccountRevision] @id, @name, @groupId, @bankSwift, @externalId, @currencyCode, @description;
+        DECLARE @_accountId INT = SCOPE_IDENTITY();
 
-		EXEC	[accounts].[Account_GetById] @id;
+		EXEC	[accounts].[_SetAccountRevision] @_accountId, @name, @_groupId, @bankSwift, @externalId, @currencyCode, @description;
+
+		EXEC	[accounts].[Account_GetByUid] @accountUid;
+
 
 		IF	@@TRANCOUNT > 0
 			AND @_inNestedTransaction = 0

@@ -84,12 +84,11 @@
     <Folder Include="payees\Stored Procedures" />
     <Folder Include="payees\Tables" />
     <Folder Include="payees\Views" />
-    <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\User Defined Types\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\accounts.sql" />
-    <Build Include="accounts\Stored Procedures\Account_GetById.sql" />
+    <Build Include="accounts\Stored Procedures\Account_GetByUid.sql" />
     <Build Include="accounts\Stored Procedures\Account_Insert.sql" />
     <Build Include="accounts\Stored Procedures\_SetAccountRevision.sql" />
     <Build Include="accounts\Stored Procedures\Account_Update.sql" />
@@ -101,10 +100,10 @@
     <Build Include="accounts\Tables\AccountClosure.sql" />
     <Build Include="accounts\Views\Account_View.sql" />
     <Build Include="Security\categories.sql" />
-    <Build Include="categories\Stored Procedures\Category_GetByAccount.sql" />
+    <Build Include="categories\Stored Procedures\Category_GetAll.sql" />
     <Build Include="categories\Stored Procedures\_SetCategoryRevision.sql" />
     <Build Include="categories\Stored Procedures\Category_Insert.sql" />
-    <Build Include="categories\Stored Procedures\Category_GetById.sql" />
+    <Build Include="categories\Stored Procedures\Category_GetByUid.sql" />
     <Build Include="categories\Stored Procedures\Category_Update.sql" />
     <Build Include="categories\Tables\Category.sql" />
     <Build Include="categories\Tables\CategoryRevision.sql" />
@@ -116,7 +115,7 @@
     <Build Include="entries\Stored Procedures\Entry_UpdateStatus.sql" />
     <Build Include="entries\Stored Procedures\_SetEntryStatus.sql" />
     <Build Include="entries\Stored Procedures\_SetEntryRevision.sql" />
-    <Build Include="entries\Stored Procedures\EntryTransaction_GetByEntryId.sql" />
+    <Build Include="entries\Stored Procedures\EntryTransaction_GetByEntryUid.sql" />
     <Build Include="entries\Tables\Entry.sql" />
     <Build Include="entries\Tables\EntryRevision.sql" />
     <Build Include="entries\Tables\EntryStatusChange.sql" />
@@ -127,17 +126,16 @@
     <Build Include="payees\Tables\Payee.sql" />
     <Build Include="payees\Tables\PayeeRevision.sql" />
     <Build Include="payees\Views\Payee_View.sql" />
-    <Build Include="payees\Stored Procedures\Payee_GetByPayerAccount.sql" />
+    <Build Include="payees\Stored Procedures\Payee_GetAll.sql" />
     <Build Include="payees\Stored Procedures\Payee_Insert.sql" />
     <Build Include="payees\Stored Procedures\_SetPayeeRevision.sql" />
-    <Build Include="payees\Stored Procedures\Payee_GetById.sql" />
+    <Build Include="payees\Stored Procedures\Payee_GetByUid.sql" />
     <Build Include="payees\Stored Procedures\Payee_Update.sql" />
-    <Build Include="dbo\Functions\IsAlphanumeric.sql" />
     <Build Include="dbo\User Defined Types\GuidIdRequest.sql" />
     <Build Include="accounts\Stored Procedures\_SetGroupRevision.sql" />
     <Build Include="accounts\Tables\AccountGroupRevision.sql" />
     <Build Include="accounts\Views\AccountGroup_View.sql" />
-    <Build Include="accounts\Stored Procedures\AccountGroup_GetById.sql" />
+    <Build Include="accounts\Stored Procedures\AccountGroup_GetByUid.sql" />
     <Build Include="dbo\User Defined Types\IntIdRequest.sql" />
   </ItemGroup>
   <ItemGroup>

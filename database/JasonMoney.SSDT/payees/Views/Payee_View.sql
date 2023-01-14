@@ -6,8 +6,8 @@ WITH LatestPayeeRevision AS (
 	GROUP BY
 			[PayeeId]
 )
-SELECT	[p].[Id]
-		, [rev].[PayerAccountId]
+SELECT	[p].[Uid]
+        , [p].[Id]
 		, [rev].[Name]
 FROM	[payees].[Payee] p JOIN
 		[payees].[PayeeRevision] rev ON rev.[PayeeId] = p.[Id] JOIN

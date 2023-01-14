@@ -6,7 +6,8 @@ WITH LatestAccountRevision AS (
 	GROUP BY
 			[AccountId]
 )
-SELECT	[a].[Id]
+SELECT	[a].[Uid]
+        , [a].[Id]
 		, [rev].[Name]
 		, [rev].[GroupId]
 		, [rev].[BankSwift]

@@ -1,11 +1,10 @@
 ﻿CREATE PROCEDURE [payees].[_SetPayeeRevision]
-	@id BIGINT,
-	@payerAccountId UNIQUEIDENTIFIER,
+	@payeeId BIGINT,
 	@name NVARCHAR(MAX)
 AS
 BEGIN;
 	INSERT INTO
 			[payees].[PayeeRevision]
-			([PayeeId], [PayerAccountId], [Name])
-	VALUES	(@id, @payerAccountId, @name);
+			([PayeeId], [Name])
+	VALUES	(@payeeId, @name);
 END;

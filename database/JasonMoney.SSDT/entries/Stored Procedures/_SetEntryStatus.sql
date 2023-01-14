@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [entries].[_SetEntryStatus]
-	@id BIGINT,
+	@entryId BIGINT,
 	@date DATETIMEOFFSET,
 	@isCleared BIT,
 	@isActive BIT
@@ -8,5 +8,5 @@ BEGIN
 	INSERT INTO
 			[entries].[EntryStatusChange]
 			([EntryId], [Date], [IsCleared], [IsActive])
-	VALUES	(@id, @date, @isCleared, @isActive);
+	VALUES	(@entryId, @date, @isCleared, @isActive);
 END;

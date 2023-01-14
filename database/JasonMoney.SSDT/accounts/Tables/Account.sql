@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [accounts].[Account]
 (
-	[Id] UNIQUEIDENTIFIER NOT NULL CONSTRAINT PK_Account PRIMARY KEY,
-	--CONSTRAINT CK_Account_Slug_Alphanumeric CHECK (dbo.IsAlphanumeric([Slug]) = 1),
+	[Id] INT IDENTITY(1,1) NOT NULL CONSTRAINT PK_Account PRIMARY KEY,
+    [Uid] UNIQUEIDENTIFIER NOT NULL CONSTRAINT UK_Account_Uid UNIQUE,
 );

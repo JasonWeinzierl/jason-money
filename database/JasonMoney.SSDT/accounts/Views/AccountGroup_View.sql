@@ -7,7 +7,8 @@ WITH LatestGroupName AS (
 	GROUP BY
 			[GroupId]
 )
-SELECT	g.[Id]
+SELECT	g.[Uid]
+        , g.[Id]
 		, rev.[Name]
 FROM	[accounts].[AccountGroup] g JOIN
 		[accounts].[AccountGroupRevision] rev ON rev.[GroupId] = g.[Id] JOIN

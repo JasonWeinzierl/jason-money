@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [entries].[_SetEntryRevision]
-	@id BIGINT,
-	@accountId UNIQUEIDENTIFIER,
+	@entryId BIGINT,
+	@accountId INT,
 	@payeeId BIGINT NULL,
-	@transferAccountId UNIQUEIDENTIFIER NULL,
+	@transferAccountId INT NULL,
 	@date DATETIMEOFFSET,
 	@transactions [entries].[EntryTransactionRequest] READONLY
 AS
@@ -28,10 +28,11 @@ BEGIN
 			SET @_inNestedTransaction = 1;
 		END;
 
+
 		INSERT INTO
 				[entries].[EntryRevision]
 				([EntryId], [AccountId], [PayeeId], [TransferAccountId], [Date])
-		VALUES	(@id, @accountId, @payeeId, @transferAccountId, @date);
+		VALUES	(@entryId, @accountId, @payeeId, @transferAccountId, @date);
 
 		DECLARE	@_entryRevisionId BIGINT = SCOPE_IDENTITY();
 
@@ -39,11 +40,13 @@ BEGIN
 				[entries].[EntryTransaction]
 				([EntryRevisionId], [CategoryId], [Amount], [CurrencyCode], [Memo])
 		SELECT	@_entryRevisionId AS [EntryRevisionId]
-				, [CategoryId]
-				, [Amount]
-				, [CurrencyCode]
-				, [Memo]
-		FROM	@transactions;
+				, c.[Id]
+				, t.[Amount]
+				, t.[CurrencyCode]
+				, t.[Memo]
+		FROM	@transactions t JOIN
+                [categories].[Category] c ON c.[Uid] = t.[CategoryUid];
+
 
 		IF	@@TRANCOUNT > 0
 			AND @_inNestedTransaction = 0

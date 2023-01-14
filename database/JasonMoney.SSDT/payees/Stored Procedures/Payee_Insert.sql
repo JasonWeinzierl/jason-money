@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [payees].[Payee_Insert]
-	@payerAccountId UNIQUEIDENTIFIER,
+    @payeeUid UNIQUEIDENTIFIER,
 	@name NVARCHAR(MAX)
 AS
 BEGIN;
@@ -19,15 +19,18 @@ BEGIN;
 			SET @_inNestedTransaction = 1;
 		END;
 
+
 		INSERT INTO
 				[payees].[Payee]
-		DEFAULT VALUES;
+                ([Uid])
+        VALUES (@payeeUid);
 
 		DECLARE @_payeeId BIGINT = SCOPE_IDENTITY();
 
-		EXEC	[payees].[_SetPayeeRevision] @_payeeId, @payerAccountId, @name;
+		EXEC	[payees].[_SetPayeeRevision] @_payeeId, @name;
 
-		EXEC	[payees].[Payee_GetById] @_payeeId;
+		EXEC	[payees].[Payee_GetByUid] @payeeUid;
+
 
 		IF	@@TRANCOUNT > 0
 			AND @_inNestedTransaction = 0

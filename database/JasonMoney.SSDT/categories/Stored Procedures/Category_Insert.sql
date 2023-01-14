@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [categories].[Category_Insert]
-	@accountId UNIQUEIDENTIFIER,
+	@categoryUid UNIQUEIDENTIFIER,
 	
 	@name NVARCHAR(4000),
 	@subname NVARCHAR(4000) NULL
@@ -21,15 +21,18 @@ BEGIN
 			SET @_inNestedTransaction = 1;
 		END;
 
+
 		INSERT INTO
 				[categories].[Category]
-		DEFAULT VALUES;
+		        ([Uid])
+        VALUES  (@categoryUid);
 
 		DECLARE @_categoryId INT = SCOPE_IDENTITY();
 
-		EXEC	[categories].[_SetCategoryRevision] @_categoryId, @accountId, @name, @subname;
+		EXEC	[categories].[_SetCategoryRevision] @_categoryId, @name, @subname;
 
-		EXEC	[categories].[Category_GetById] @_categoryId;
+		EXEC	[categories].[Category_GetByUid] @categoryUid;
+
 
 		IF	@@TRANCOUNT > 0
 			AND @_inNestedTransaction = 0

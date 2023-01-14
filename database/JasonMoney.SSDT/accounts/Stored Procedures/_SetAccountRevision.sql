@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [accounts].[_SetAccountRevision]
-	@id UNIQUEIDENTIFIER,
+	@accountId INT,
 
 	@name NVARCHAR(4000),
 	@groupId INT NULL,
@@ -12,5 +12,5 @@ BEGIN
 	INSERT INTO
 			[accounts].[AccountRevision]
 			([AccountId], [Name], [GroupId], [BankSwift], [ExternalId], [CurrencyCode], [Description])
-	VALUES	(@id, @name, @groupId, @bankSwift, @externalId, @currencyCode, @description);
+	VALUES	(@accountId, @name, @groupId, @bankSwift, @externalId, @currencyCode, @description);
 END;

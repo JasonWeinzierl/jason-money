@@ -1,10 +1,17 @@
 ﻿CREATE PROCEDURE [payees].[Payee_Update]
-	@id BIGINT,
-	@payerAccountId UNIQUEIDENTIFIER,
+	@payeeUid UNIQUEIDENTIFIER,
 	@name NVARCHAR(MAX)
 AS
 BEGIN;
-	EXEC	[payees].[_SetPayeeRevision] @id, @payerAccountId, @name;
+	SET XACT_ABORT, NOCOUNT ON;
 
-	EXEC	[payees].[Payee_GetById] @id;
+    DECLARE @_payeeId BIGINT = (SELECT [Id] FROM [payees].[Payee] WHERE [Uid] = @payeeUid);
+    IF @_payeeId IS NULL
+    BEGIN
+		;THROW 50002, 'The payee does not exist', 1;
+	END;
+
+	EXEC    [payees].[_SetPayeeRevision] @_payeeId, @name;
+
+	EXEC	[payees].[Payee_GetByUid] @payeeUid;
 END;

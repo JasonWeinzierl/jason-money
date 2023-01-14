@@ -12,7 +12,8 @@ LatestEntryStatusChange AS (
 	GROUP BY
 			[EntryId]
 )
-SELECT	[e].[Id] AS EntryId
+SELECT	[e].[Uid] AS EntryUid
+        , [e].[Id] AS EntryId
 		, [rev].[Date]
 		, [rev].[AccountId]
 		, [rev].[PayeeId]

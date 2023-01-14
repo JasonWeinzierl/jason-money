@@ -6,8 +6,8 @@ WITH LatestCategoryRevision AS (
 	GROUP BY
 			[CategoryId]
 )
-SELECT	[c].[Id]
-		, [rev].[AccountId]
+SELECT	[c].[Uid]
+        , [c].[Id]
 		, [rev].[Name]
 		, [rev].[Subname]
 FROM	[categories].[Category] c JOIN

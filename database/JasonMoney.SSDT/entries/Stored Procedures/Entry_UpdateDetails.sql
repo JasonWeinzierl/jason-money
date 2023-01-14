@@ -1,48 +1,47 @@
 ﻿CREATE PROCEDURE [entries].[Entry_UpdateDetails]
-	@id BIGINT,
-	@accountId UNIQUEIDENTIFIER,
-	@payeeId BIGINT NULL,
-	@transferAccountId UNIQUEIDENTIFIER NULL,
+	@entryUid UNIQUEIDENTIFIER,
+	@accountUid UNIQUEIDENTIFIER,
+	@payeeUid UNIQUEIDENTIFIER NULL,
+	@transferAccountUid UNIQUEIDENTIFIER NULL,
 	@date DATETIMEOFFSET,
 	@transactions [entries].[EntryTransactionRequest] READONLY
 AS
 BEGIN
 	SET XACT_ABORT, NOCOUNT ON;
 
-	DECLARE @_inNestedTransaction BIT;
+    DECLARE @_entryId INT = (SELECT [Id] FROM [entries].[Entry] WHERE [Uid] = @entryUid);
+    IF @_entryId IS NULL
+    BEGIN
+		;THROW 50002, 'The entry does not exist', 1;
+	END;
 
-	BEGIN TRY
-	
-		IF	@@TRANCOUNT = 0
-		BEGIN
-			SET	@_inNestedTransaction = 0;
-			BEGIN TRANSACTION;
-		END
-		ELSE
-		BEGIN
-			SET @_inNestedTransaction = 1;
-		END;
+    DECLARE @_payeeId BIGINT = NULL;
+    IF @payeeUid IS NOT NULL
+    BEGIN;
+        SELECT @_payeeId = [Id] FROM [payees].[Payee] WHERE [Uid] = @payeeUid;
+        IF @_payeeId IS NULL
+        BEGIN
+		    ;THROW 50002, 'The payee does not exist', 1;
+	    END;
+    END;
 
-		EXEC	[entries].[_SetEntryRevision] @id, @accountId, @payeeId, @transferAccountId, @date, @transactions;
+    DECLARE @_accountId INT = (SELECT [Id] FROM [accounts].[Account] WHERE [Uid] = @accountUid);
+    IF @_accountId IS NULL
+    BEGIN
+		;THROW 50002, 'The account does not exist', 1;
+	END;
+    
+    DECLARE @_transferAccountId INT = NULL;
+    IF @transferAccountUid IS NOT NULL
+    BEGIN;
+        SELECT @_transferAccountId = [Id] FROM [accounts].[Account] WHERE [Uid] = @transferAccountUid;
+        IF @_transferAccountId IS NULL
+        BEGIN
+		    ;THROW 50002, 'The transfer account does not exist', 1;
+	    END;
+    END;
 
-		EXEC	[entries].[EntryTransaction_GetByEntryId] @id;
+	EXEC	[entries].[_SetEntryRevision] @_entryId, @_accountId, @_payeeId, @_transferAccountId, @date, @transactions;
 
-		IF	@@TRANCOUNT > 0
-			AND @_inNestedTransaction = 0
-		BEGIN
-			COMMIT TRANSACTION;
-		END;
-
-	END TRY
-	BEGIN CATCH
-		
-		IF	@@TRANCOUNT > 0
-			AND @_inNestedTransaction = 0
-		BEGIN
-			ROLLBACK TRANSACTION;
-		END;
-
-		THROW;
-
-	END CATCH;
+	EXEC	[entries].[EntryTransaction_GetByEntryUid] @entryUid;
 END;
