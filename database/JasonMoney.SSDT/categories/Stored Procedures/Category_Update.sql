@@ -9,8 +9,8 @@ BEGIN
 
     DECLARE @_categoryId INT = (SELECT [Id] FROM [categories].[Category] WHERE [Uid] = @categoryUid);
     IF @_categoryId IS NULL
-    BEGIN
-		;THROW 50002, 'The category does not exist.', 1;
+    BEGIN;
+        RETURN 0;
 	END;
 
 	EXEC	[categories].[_SetCategoryRevision] @_categoryId, @name, @subname;

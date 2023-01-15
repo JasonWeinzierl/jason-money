@@ -16,6 +16,7 @@ BEGIN
 			, et.[IsCleared]
 			, et.[IsActive]
 			
+            , c.[Uid] AS CategoryUid
 			, et.[CategoryId]
 			, c.[Name] AS CategoryName
 			, c.[Subname] AS CategorySubname

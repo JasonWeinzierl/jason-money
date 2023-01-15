@@ -8,8 +8,8 @@ BEGIN
 
     DECLARE @_entryId INT = (SELECT [Id] FROM [entries].[Entry] WHERE [Uid] = @entryUid);
     IF @_entryId IS NULL
-    BEGIN
-		;THROW 50002, 'The entry does not exist.', 1;
+    BEGIN;
+        RETURN 0;
 	END;
 
 	EXEC	[entries].[_SetEntryStatus] @_entryId, @isCleared, @isActive;

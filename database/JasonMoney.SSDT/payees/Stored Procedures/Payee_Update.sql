@@ -7,8 +7,8 @@ BEGIN;
 
     DECLARE @_payeeId BIGINT = (SELECT [Id] FROM [payees].[Payee] WHERE [Uid] = @payeeUid);
     IF @_payeeId IS NULL
-    BEGIN
-		;THROW 50002, 'The payee does not exist.', 1;
+    BEGIN;
+        RETURN 0;
 	END;
 
 	EXEC    [payees].[_SetPayeeRevision] @_payeeId, @name;

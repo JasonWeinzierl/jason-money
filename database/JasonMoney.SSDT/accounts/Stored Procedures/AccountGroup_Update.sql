@@ -7,8 +7,8 @@ BEGIN;
 
     DECLARE @_groupId INT = (SELECT [Id] FROM [accounts].[AccountGroup] WHERE [Uid] = @groupUid);
     IF @_groupId IS NULL
-    BEGIN
-        ;THROW 50002, 'The account group does not exist.', 1;
+    BEGIN;
+        RETURN 0;
     END;
 
     EXEC    [accounts].[_SetGroupRevision] @_groupId, @name;
