@@ -5,7 +5,6 @@
 	@groupUid UNIQUEIDENTIFIER NULL,
 	@bankSwift CHAR(11) NULL,
 	@externalId NVARCHAR(MAX) NULL,
-	@currencyCode CHAR(3),
 	@description NVARCHAR(MAX) NULL
 AS
 BEGIN;
@@ -43,7 +42,7 @@ BEGIN;
 
         DECLARE @_accountId INT = SCOPE_IDENTITY();
 
-		EXEC	[accounts].[_SetAccountRevision] @_accountId, @name, @_groupId, @bankSwift, @externalId, @currencyCode, @description;
+		EXEC	[accounts].[_SetAccountRevision] @_accountId, @name, @_groupId, @bankSwift, @externalId, @description;
 
 		EXEC	[accounts].[Account_GetByUid] @accountUid;
 

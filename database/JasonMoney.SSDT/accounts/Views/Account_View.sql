@@ -12,7 +12,6 @@ SELECT	[a].[Uid]
 		, [rev].[GroupId]
 		, [rev].[BankSwift]
 		, [rev].[ExternalId]
-		, [rev].[CurrencyCode]
 		, [rev].[Description]
 FROM	[accounts].[Account] a JOIN
 		[accounts].[AccountRevision] rev ON rev.[AccountId] = a.[Id] JOIN

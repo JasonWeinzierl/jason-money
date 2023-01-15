@@ -26,7 +26,6 @@ SELECT	[e].[Uid] AS EntryUid
 		, [t].[Id] AS TransactionId
 		, [t].[CategoryId]
 		, [t].[Amount]
-		, [t].[CurrencyCode]
 		, [t].[Memo]
 FROM	[entries].[Entry] e JOIN
 		[entries].[EntryRevision] rev ON rev.[EntryId] = e.[Id] JOIN

@@ -38,11 +38,10 @@ BEGIN
 
 		INSERT INTO
 				[entries].[EntryTransaction]
-				([EntryRevisionId], [CategoryId], [Amount], [CurrencyCode], [Memo])
+				([EntryRevisionId], [CategoryId], [Amount], [Memo])
 		SELECT	@_entryRevisionId AS [EntryRevisionId]
 				, c.[Id]
 				, t.[Amount]
-				, t.[CurrencyCode]
 				, t.[Memo]
 		FROM	@transactions t JOIN
                 [categories].[Category] c ON c.[Uid] = t.[CategoryUid];

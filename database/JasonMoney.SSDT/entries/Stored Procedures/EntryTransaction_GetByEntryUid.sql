@@ -23,7 +23,6 @@ BEGIN
 
 			, et.[TransactionId]
 			, et.[Amount]
-			, et.[CurrencyCode]
 			, et.[Memo]
 	FROM	[entries].[EntryTransaction_View] et JOIN
             [accounts].[Account] a ON a.[Id] = et.[AccountId] LEFT JOIN

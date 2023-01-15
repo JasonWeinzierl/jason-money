@@ -12,7 +12,6 @@ BEGIN
 
 			, a.[BankSwift]
 			, a.[ExternalId]
-			, a.[CurrencyCode]
 			, a.[Description]
 	FROM	[accounts].[Account_View] a JOIN
 			[accounts].[AccountGroup_View] g ON g.[Id] = a.[GroupId]

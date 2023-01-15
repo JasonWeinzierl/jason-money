@@ -8,7 +8,6 @@
 	[GroupId] INT NULL,
 	[BankSwift] CHAR(11) NULL,
 	[ExternalId] NVARCHAR(MAX) NULL,
-	[CurrencyCode] CHAR(3) NOT NULL,
 	[Description] NVARCHAR(MAX) NULL,
 
 	CONSTRAINT FK_AccountRevision_Account FOREIGN KEY ([AccountId])
@@ -19,15 +18,6 @@
             ON DELETE SET NULL,
 );
 
-GO
-EXEC sp_addextendedproperty @name = N'MS_Description',
-    @value = N'ISO 4217',
-    @level0type = N'SCHEMA',
-    @level0name = N'accounts',
-    @level1type = N'TABLE',
-    @level1name = N'AccountRevision',
-    @level2type = N'COLUMN',
-    @level2name = N'CurrencyCode'
 GO
 EXEC sp_addextendedproperty @name = N'MS_Description',
     @value = N'ISO 9362',
