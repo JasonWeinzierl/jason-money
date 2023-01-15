@@ -19,7 +19,6 @@ SELECT	[e].[Uid] AS EntryUid
 		, [rev].[PayeeId]
 		, [rev].[TransferAccountId]
 
-		, [sc].[Date] AS StatusDate
 		, [sc].[IsCleared]
 		, [sc].[IsActive]
 

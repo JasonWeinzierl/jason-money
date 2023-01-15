@@ -15,7 +15,6 @@ BEGIN
 
             , atransfer.[Uid] AS TransferAccountUid
 			
-			, et.[StatusDate]
 			, et.[IsCleared]
 			, et.[IsActive]
 

@@ -60,7 +60,7 @@ BEGIN
 	    DECLARE @_entryId BIGINT = SCOPE_IDENTITY();
 
 		EXEC	[entries].[_SetEntryRevision] @_entryId, @_accountId, @_payeeId, @_transferAccountId, @date, @transactions;
-		EXEC	[entries].[_SetEntryStatus] @_entryId, @date, @isCleared, @isActive;
+		EXEC	[entries].[_SetEntryStatus] @_entryId, @isCleared, @isActive;
 
 		EXEC	[entries].[EntryTransaction_GetByEntryUid] @entryUid;
 

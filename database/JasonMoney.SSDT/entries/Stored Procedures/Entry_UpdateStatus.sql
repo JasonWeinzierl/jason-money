@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE [entries].[Entry_UpdateStatus]
 	@entryUid UNIQUEIDENTIFIER,
-	@date DATETIMEOFFSET,
 	@isCleared BIT,
 	@isActive BIT
 AS
@@ -13,7 +12,7 @@ BEGIN
 		;THROW 50002, 'The entry does not exist', 1;
 	END;
 
-	EXEC	[entries].[_SetEntryStatus] @_entryId, @date, @isCleared, @isActive;
+	EXEC	[entries].[_SetEntryStatus] @_entryId, @isCleared, @isActive;
 
 	EXEC	[entries].[EntryTransaction_GetByEntryUid] @entryUid;
 END;
