@@ -14,7 +14,7 @@ BEGIN
     DECLARE @_accountId INT = (SELECT [Id] FROM [accounts].[Account] WHERE [Uid] = @accountUid);
     IF @_accountId IS NULL
     BEGIN
-		;THROW 50002, 'The account does not exist', 1;
+		;THROW 50002, 'The account does not exist.', 1;
 	END;
 
     DECLARE @_payeeId BIGINT = NULL;
@@ -23,7 +23,7 @@ BEGIN
         SELECT @_payeeId = [Id] FROM [payees].[Payee] WHERE [Uid] = @payeeUid;
         IF @_payeeId IS NULL
         BEGIN
-		    ;THROW 50002, 'The payee does not exist', 1;
+		    ;THROW 50002, 'The payee does not exist.', 1;
 	    END;
     END;
     
@@ -33,7 +33,7 @@ BEGIN
         SELECT @_transferAccountId = [Id] FROM [accounts].[Account] WHERE [Uid] = @transferAccountUid;
         IF @_transferAccountId IS NULL
         BEGIN
-		    ;THROW 50002, 'The transfer account does not exist', 1;
+		    ;THROW 50002, 'The transfer account does not exist.', 1;
 	    END;
     END;
 

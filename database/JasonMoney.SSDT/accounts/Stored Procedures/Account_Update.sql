@@ -13,7 +13,7 @@ BEGIN
     DECLARE @_accountId INT = (SELECT [Id] FROM [accounts].[Account] WHERE [Uid] = @accountUid);
     IF @_accountId IS NULL
     BEGIN
-		;THROW 50002, 'The account does not exist', 1;
+		;THROW 50002, 'The account does not exist.', 1;
 	END;
 
     DECLARE @_groupId INT = NULL;

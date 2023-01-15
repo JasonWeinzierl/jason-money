@@ -137,6 +137,9 @@
     <Build Include="accounts\Views\AccountGroup_View.sql" />
     <Build Include="accounts\Stored Procedures\AccountGroup_GetByUid.sql" />
     <Build Include="dbo\User Defined Types\IntIdRequest.sql" />
+    <Build Include="accounts\Stored Procedures\AccountGroup_GetAll.sql" />
+    <Build Include="accounts\Stored Procedures\AccountGroup_Insert.sql" />
+    <Build Include="accounts\Stored Procedures\AccountGroup_Update.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
