@@ -10,12 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0-rc2.10" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JasonMoney.Api.Contracts\JasonMoney.Api.Contracts.csproj" />
     <ProjectReference Include="..\JasonMoney.Api.Domain\JasonMoney.Api.Domain.csproj" />
     <ProjectReference Include="..\JasonMoney.Api.Infrastructure\JasonMoney.Api.Infrastructure.csproj" />
   </ItemGroup>

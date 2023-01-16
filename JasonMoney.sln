@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31423.177
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{4C7D8A84-9D72-440B-9836-7917C6D0751E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JasonMoney.Api", "src\WebApi\src\JasonMoney.Api\JasonMoney.Api.csproj", "{8439450C-DD6D-4CFE-A217-2C0144338CD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Api", "src\WebApi\src\JasonMoney.Api\JasonMoney.Api.csproj", "{8439450C-DD6D-4CFE-A217-2C0144338CD9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Api.Infrastructure", "src\WebApi\src\JasonMoney.Api.Infrastructure\JasonMoney.Api.Infrastructure.csproj", "{0D455D52-5C88-4C81-B7C1-7C61BB02CF29}"
 EndProject
@@ -37,6 +37,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinDesktop", "WinDesktop", "{5F25D87E-49FD-4200-90A6-36F6E05E0EE4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.UiApp", "src\WinDesktop\src\JasonMoney.UiApp\JasonMoney.UiApp.csproj", "{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JasonMoney.Api.Contracts", "src\WebApi\src\JasonMoney.Api.Contracts\JasonMoney.Api.Contracts.csproj", "{1AE07C69-3FC6-4147-9EB6-8485A2EB6BFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +74,10 @@ Global
 		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE07C69-3FC6-4147-9EB6-8485A2EB6BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE07C69-3FC6-4147-9EB6-8485A2EB6BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE07C69-3FC6-4147-9EB6-8485A2EB6BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE07C69-3FC6-4147-9EB6-8485A2EB6BFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{29B57003-7638-4FFB-9229-5B6F060356EE} = {4C7D8A84-9D72-440B-9836-7917C6D0751E}
 		{1AE3883D-6740-4DEE-BB82-C08C172628CB} = {29B57003-7638-4FFB-9229-5B6F060356EE}
 		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0} = {5F25D87E-49FD-4200-90A6-36F6E05E0EE4}
+		{1AE07C69-3FC6-4147-9EB6-8485A2EB6BFD} = {4C7D8A84-9D72-440B-9836-7917C6D0751E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {560289FE-6184-445D-AD51-80599B8F8D2A}

@@ -20,7 +20,7 @@ public class AccountRepository : IAccountRepository
 
 
     public async Task Delete(Guid uid, DateTimeOffset dateClosed, CancellationToken cancellationToken = default)
-        => await _e.ExecuteNonQueryAsync(DbConstants.ConnectionStringName, "accounts.Account_Delete", new { uid, dateClosed }, cancellationToken);
+        => await _e.ExecuteNonQueryAsync(DbConstants.ConnectionStringName, "accounts.Account_Delete", new { accountUid = uid, dateClosed }, cancellationToken);
     public async Task<IReadOnlyCollection<Account>> GetAll(CancellationToken cancellationToken = default)
     {
         var results = await _e.QueryAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_GetAll", cancellationToken: cancellationToken);

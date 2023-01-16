@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JasonMoney.Infrastructure.IoC;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Serilog.Context;
 using Serilog.Events;
@@ -49,7 +50,11 @@ public class Program
                 options.IncludeXmlComments(GetXmlCommentsPath());
             });
 
-            builder.Services.AddHealthChecks();
+            builder.Services.AddHealthChecks()
+                .AddSqlServer(builder.Configuration.GetConnectionString("JasonMoney")!);
+
+            builder.Services.AddInfra();
+
 
             var app = builder.Build();
 
