@@ -1,7 +1,8 @@
 ﻿using Dapplo.Microsoft.Extensions.Hosting.Wpf;
-using JasonMoney.Infrastructure.IoC;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,7 +17,7 @@ public static class Program
 
     private static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
-            .ConfigureServices(services =>
+            .ConfigureServices((context, services) =>
             {
                 services.AddSingleton<INavigationService, NavigationService>();
                 services.AddTransient<AboutWindow>();
@@ -27,7 +28,8 @@ public static class Program
                 services.AddTransient<AccountsSummaryViewModel>();
                 services.AddTransient<OptionsViewModel>();
 
-                services.AddInfra();
+                services.AddHttpClient("JasonMoney.Api")
+                    .ConfigureHttpClient(httpClient => httpClient.BaseAddress = new Uri(context.Configuration.GetConnectionString("JasonMoney.Api")));
             })
             .ConfigureWpf(wpfBuilder =>
             {
