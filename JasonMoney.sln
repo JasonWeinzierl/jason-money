@@ -2,22 +2,22 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31423.177
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.UiApp", "src\JasonMoney.UiApp\JasonMoney.UiApp.csproj", "{35BA11BC-BAB1-4B4C-A0B7-C1C15DF9D283}"
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{4C7D8A84-9D72-440B-9836-7917C6D0751E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Infrastructure", "src\JasonMoney.Infrastructure\JasonMoney.Infrastructure.csproj", "{0D455D52-5C88-4C81-B7C1-7C61BB02CF29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Api.Infrastructure", "src\WebApi\src\JasonMoney.Api.Infrastructure\JasonMoney.Api.Infrastructure.csproj", "{0D455D52-5C88-4C81-B7C1-7C61BB02CF29}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Domain", "src\JasonMoney.Domain\JasonMoney.Domain.csproj", "{83872582-9C9E-44FE-B9EB-ABE68EC4939D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Api.Domain", "src\WebApi\src\JasonMoney.Api.Domain\JasonMoney.Api.Domain.csproj", "{83872582-9C9E-44FE-B9EB-ABE68EC4939D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{247B9BB7-31D5-43B7-80EE-66A0D79FD617}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Infrastructure.Tests", "tests\JasonMoney.Infrastructure.Tests\JasonMoney.Infrastructure.Tests.csproj", "{69A2EDF6-19B0-4DED-82A0-1EACA6C21B10}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Api.Infrastructure.Tests", "src\WebApi\test\JasonMoney.Api.Infrastructure.Tests\JasonMoney.Api.Infrastructure.Tests.csproj", "{69A2EDF6-19B0-4DED-82A0-1EACA6C21B10}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Domain.Tests", "tests\JasonMoney.Domain.Tests\JasonMoney.Domain.Tests.csproj", "{3456E9D2-BAF1-4290-A1CB-D88DDF173BBA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.Api.Domain.Tests", "src\WebApi\test\JasonMoney.Api.Domain.Tests\JasonMoney.Api.Domain.Tests.csproj", "{3456E9D2-BAF1-4290-A1CB-D88DDF173BBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{29B57003-7638-4FFB-9229-5B6F060356EE}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "JasonMoney.SSDT", "database\JasonMoney.SSDT\JasonMoney.SSDT.sqlproj", "{1AE3883D-6740-4DEE-BB82-C08C172628CB}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "JasonMoney.SSDT", "src\WebApi\database\JasonMoney.SSDT\JasonMoney.SSDT.sqlproj", "{1AE3883D-6740-4DEE-BB82-C08C172628CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A37C1551-A821-4EC4-B202-8C4577BB0D22}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,16 +32,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{1062
 		.github\workflows\ssdt.yml = .github\workflows\ssdt.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinDesktop", "WinDesktop", "{5F25D87E-49FD-4200-90A6-36F6E05E0EE4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JasonMoney.UiApp", "src\WinDesktop\src\JasonMoney.UiApp\JasonMoney.UiApp.csproj", "{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{35BA11BC-BAB1-4B4C-A0B7-C1C15DF9D283}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35BA11BC-BAB1-4B4C-A0B7-C1C15DF9D283}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35BA11BC-BAB1-4B4C-A0B7-C1C15DF9D283}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35BA11BC-BAB1-4B4C-A0B7-C1C15DF9D283}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D455D52-5C88-4C81-B7C1-7C61BB02CF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D455D52-5C88-4C81-B7C1-7C61BB02CF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D455D52-5C88-4C81-B7C1-7C61BB02CF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,14 +62,23 @@ Global
 		{1AE3883D-6740-4DEE-BB82-C08C172628CB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{1AE3883D-6740-4DEE-BB82-C08C172628CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AE3883D-6740-4DEE-BB82-C08C172628CB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{0D455D52-5C88-4C81-B7C1-7C61BB02CF29} = {4C7D8A84-9D72-440B-9836-7917C6D0751E}
+		{83872582-9C9E-44FE-B9EB-ABE68EC4939D} = {4C7D8A84-9D72-440B-9836-7917C6D0751E}
+		{247B9BB7-31D5-43B7-80EE-66A0D79FD617} = {4C7D8A84-9D72-440B-9836-7917C6D0751E}
 		{69A2EDF6-19B0-4DED-82A0-1EACA6C21B10} = {247B9BB7-31D5-43B7-80EE-66A0D79FD617}
 		{3456E9D2-BAF1-4290-A1CB-D88DDF173BBA} = {247B9BB7-31D5-43B7-80EE-66A0D79FD617}
+		{29B57003-7638-4FFB-9229-5B6F060356EE} = {4C7D8A84-9D72-440B-9836-7917C6D0751E}
 		{1AE3883D-6740-4DEE-BB82-C08C172628CB} = {29B57003-7638-4FFB-9229-5B6F060356EE}
+		{472CCC84-D67F-4120-BA4A-1083CFFE7CA0} = {5F25D87E-49FD-4200-90A6-36F6E05E0EE4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {560289FE-6184-445D-AD51-80599B8F8D2A}

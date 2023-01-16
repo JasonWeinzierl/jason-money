@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\JasonMoney.Infrastructure\JasonMoney.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\JasonMoney.Api.Domain\JasonMoney.Api.Domain.csproj" />
   </ItemGroup>
 
 </Project>
