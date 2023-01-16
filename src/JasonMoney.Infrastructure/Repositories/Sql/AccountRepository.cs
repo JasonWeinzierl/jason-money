@@ -11,35 +11,38 @@ namespace JasonMoney.Infrastructure.Repositories.Sql;
 
 public class AccountRepository : IAccountRepository
 {
-    protected IDbExecuter E { get; }
+    private readonly IDbExecuter _e;
 
     public AccountRepository(IDbExecuter executer)
     {
-        E = executer;
+        _e = executer;
     }
 
-    public async Task<Account?> GetById(Guid id, CancellationToken cancellationToken = default)
-    {
-        var result = await E.QuerySingleOrDefaultAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_GetById", new { id }, cancellationToken);
-        return result?.ToDomainModel();
-    }
 
+    public async Task Delete(Guid uid, DateTimeOffset dateClosed, CancellationToken cancellationToken = default)
+        => await _e.ExecuteNonQueryAsync(DbConstants.ConnectionStringName, "accounts.Account_Delete", new { uid, dateClosed }, cancellationToken);
     public async Task<IReadOnlyCollection<Account>> GetAll(CancellationToken cancellationToken = default)
     {
-        var results = await E.QueryAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_GetAll", cancellationToken: cancellationToken);
+        var results = await _e.QueryAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_GetAll", cancellationToken: cancellationToken);
         return results.Select(r => r.ToDomainModel()).ToList();
+    }
+
+    public async Task<Account?> GetByUid(Guid uid, CancellationToken cancellationToken = default)
+    {
+        var result = await _e.QuerySingleOrDefaultAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_GetByUid", new { accountUid = uid }, cancellationToken);
+        return result?.ToDomainModel();
     }
 
     public async Task<Account> Insert(Account account, CancellationToken cancellationToken = default)
     {
-        var result = await E.QuerySingleAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_Insert", new
+        var result = await _e.QuerySingleAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_Insert", new
         {
-            id = account.Id,
+            accountUid = account.Uid,
+
             name = account.Name,
-            groupId = account.Group?.Id,
+            groupUid = account.Group?.Uid,
             bankSwift = account.BankSwift,
             externalId = account.ExternalId,
-            currencyCode = account.CurrencyCode,
             description = account.Description,
         }, cancellationToken);
         return result.ToDomainModel();
@@ -47,19 +50,16 @@ public class AccountRepository : IAccountRepository
 
     public async Task<Account?> Update(Account account, CancellationToken cancellationToken = default)
     {
-        var result = await E.QuerySingleOrDefaultAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_Update", new
+        var result = await _e.QuerySingleOrDefaultAsync<AccountDto>(DbConstants.ConnectionStringName, "accounts.Account_Update", new
         {
-            id = account.Id,
+            accountUid = account.Uid,
+
             name = account.Name,
-            groupId = account.Group?.Id,
+            groupUid = account.Group?.Uid,
             bankSwift = account.BankSwift,
             externalId = account.ExternalId,
-            currencyCode = account.CurrencyCode,
             description = account.Description,
         }, cancellationToken);
         return result?.ToDomainModel();
     }
-
-    public async Task Delete(Guid id, DateTimeOffset dateClosed, CancellationToken cancellationToken = default)
-        => await E.ExecuteNonQueryAsync(DbConstants.ConnectionStringName, "accounts.Account_Delete", new { id, dateClosed }, cancellationToken);
 }

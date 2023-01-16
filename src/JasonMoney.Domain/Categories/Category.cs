@@ -3,7 +3,6 @@
 namespace JasonMoney.Domain.Categories;
 
 public record Category(
-    int Id,
-    Guid AccountId,
+    Guid Uid,
     string Name,
     string? Subname);

@@ -11,42 +11,41 @@ namespace JasonMoney.Infrastructure.Repositories.Sql;
 
 public class PayeeRepository : IPayeeRepository
 {
-    protected IDbExecuter E { get; }
+    private readonly IDbExecuter _e;
 
     public PayeeRepository(IDbExecuter executer)
     {
-        E = executer;
+        _e = executer;
     }
 
-    public async Task<Payee?> GetById(long id, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyCollection<Payee>> GetAll(CancellationToken cancellationToken = default)
     {
-        var result = await E.QuerySingleOrDefaultAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_GetById", new { id }, cancellationToken);
-        return result?.ToDomainModel();
-    }
-
-    public async Task<IReadOnlyCollection<Payee>> GetByPayerAccount(Guid accountId, CancellationToken cancellationToken = default)
-    {
-        var results = await E.QueryAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_GetByPayerAccount", new { accountId }, cancellationToken);
+        var results = await _e.QueryAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_GetByPayerAccount", cancellationToken: cancellationToken);
         return results.Select(r => r.ToDomainModel()).ToList();
+    }
+
+    public async Task<Payee?> GetByUid(Guid uid, CancellationToken cancellationToken = default)
+    {
+        var result = await _e.QuerySingleOrDefaultAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_GetByUid", new { payeeId = uid }, cancellationToken);
+        return result?.ToDomainModel();
     }
 
     public async Task<Payee> Insert(Payee payee, CancellationToken cancellationToken = default)
     {
-        var result = await E.QuerySingleAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_Insert", new
+        var result = await _e.QuerySingleAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_Insert", new
         {
-            payerAccountId = payee.PayerAccountId,
-            name = payee.Name
+            payeeUid = payee.Uid,
+            name = payee.Name,
         }, cancellationToken);
         return result.ToDomainModel();
     }
 
     public async Task<Payee?> Update(Payee payee, CancellationToken cancellationToken = default)
     {
-        var result = await E.QuerySingleOrDefaultAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_Update", new
+        var result = await _e.QuerySingleOrDefaultAsync<PayeeDto>(DbConstants.ConnectionStringName, "payees.Payee_Update", new
         {
-            id = payee.Id,
-            payerAccountId = payee.PayerAccountId,
-            name = payee.Name
+            payeeUid = payee.Uid,
+            name = payee.Name,
         }, cancellationToken);
         return result?.ToDomainModel();
     }

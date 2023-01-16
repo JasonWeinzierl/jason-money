@@ -4,10 +4,10 @@ using System;
 namespace JasonMoney.Infrastructure.Models;
 
 internal record PayeeDto(
+    Guid Uid,
     long Id,
-    Guid PayerAccountId,
     string Name)
 {
     public Payee ToDomainModel()
-        => new(Id, PayerAccountId, Name);
+        => new(Uid, Name);
 }

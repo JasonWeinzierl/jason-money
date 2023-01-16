@@ -4,11 +4,11 @@ using System;
 namespace JasonMoney.Infrastructure.Models;
 
 internal record CategoryDto(
+    Guid Uid,
     int Id,
-    Guid AccountId,
     string Name,
     string? Subname)
 {
     public Category ToDomainModel()
-        => new(Id, AccountId, Name, Subname);
+        => new(Uid, Name, Subname);
 }

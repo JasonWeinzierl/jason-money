@@ -8,27 +8,27 @@ using System.Linq;
 namespace JasonMoney.Infrastructure.Models;
 
 internal record EntryTransactionDto(
+    Guid EntryUid,
     long EntryId,
     DateTimeOffset Date,
-    Guid AccountId,
+    Guid AccountUid,
 
+    Guid? PayeeUid,
     long? PayeeId,
     string? PayeeName,
 
-    Guid? TransferAccountId,
+    Guid? TransferAccountUid,
 
-    DateTimeOffset StatusDate,
     bool IsCleared,
     bool IsActive,
 
+    Guid? CategoryUid,
     int? CategoryId,
-    Guid? CategoryAccountId,
     string? CategoryName,
     string? CategorySubname,
 
     long TransactionId,
     decimal Amount,
-    string CurrencyCode,
     string? Memo)
 {
     public static Entry? ToDomainModel(IEnumerable<EntryTransactionDto> rows)
@@ -38,15 +38,14 @@ internal record EntryTransactionDto(
             return default;
 
         Payee? payee = null;
-        if (entry.PayeeId.HasValue)
-            payee = new Payee(entry.PayeeId.Value, entry.AccountId, entry.PayeeName!);
+        if (entry.PayeeUid.HasValue)
+            payee = new Payee(entry.PayeeUid.Value, entry.PayeeName!);
 
-        return new(entry.EntryId,
+        return new Entry(entry.EntryUid,
             entry.Date,
-            entry.AccountId,
+            entry.AccountUid,
             payee,
-            entry.TransferAccountId,
-            entry.StatusDate,
+            entry.TransferAccountUid,
             entry.IsCleared,
             entry.IsActive,
             rows.Select(r => r.ToDomainModel()).ToList());
@@ -55,9 +54,9 @@ internal record EntryTransactionDto(
     public EntryTransaction ToDomainModel()
     {
         Category? category = null;
-        if (CategoryId.HasValue)
-            category = new(CategoryId.Value, CategoryAccountId!.Value, CategoryName!, CategorySubname);
+        if (CategoryUid.HasValue)
+            category = new(CategoryUid.Value, CategoryName!, CategorySubname);
 
-        return new(TransactionId, EntryId, Amount, CurrencyCode, Memo, category);
+        return new(Amount, Memo, category);
     }
 }

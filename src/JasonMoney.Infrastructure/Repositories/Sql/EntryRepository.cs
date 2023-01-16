@@ -11,20 +11,21 @@ namespace JasonMoney.Infrastructure.Repositories.Sql;
 
 public class EntryRepository : IEntryRepository
 {
-    protected IDbExecuter E { get; }
+    private readonly IDbExecuter _e;
 
     public EntryRepository(IDbExecuter executer)
     {
-        E = executer;
+        _e = executer;
     }
 
     public async Task<Entry> Insert(Entry entry, CancellationToken cancellationToken = default)
     {
-        var results = await E.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.Entry_Insert", new
+        var results = await _e.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.Entry_Insert", new
         {
-            accountId = entry.AccountId,
-            payeeId = entry.Payee?.Id,
-            transferAccountId = entry.TransferAccountId,
+            entryUid = entry.Uid,
+            accountUid = entry.AccountUid,
+            payeeUid = entry.Payee?.Uid,
+            transferAccountUid = entry.TransferAccountUid,
             date = entry.Date,
             isCleared = entry.IsCleared,
             isActive = entry.IsActive,
@@ -36,12 +37,12 @@ public class EntryRepository : IEntryRepository
 
     public async Task<Entry?> UpdateDetails(Entry entry, CancellationToken cancellationToken = default)
     {
-        var results = await E.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.Entry_UpdateDetails", new
+        var results = await _e.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.Entry_UpdateDetails", new
         {
-            id = entry.Id,
-            accountId = entry.AccountId,
-            payeeId = entry.Payee?.Id,
-            transferAccountId = entry.TransferAccountId,
+            entryUid = entry.Uid,
+            accountUid = entry.AccountUid,
+            payeeUid = entry.Payee?.Uid,
+            transferAccountUid = entry.TransferAccountUid,
             date = entry.Date,
             transactions = entry.Transactions.ToTableValuedParameter(),
         }, cancellationToken);
@@ -50,32 +51,31 @@ public class EntryRepository : IEntryRepository
 
     public async Task<Entry?> UpdateStatus(Entry entry, DateTimeOffset statusDate, CancellationToken cancellationToken = default)
     {
-        var results = await E.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.Entry_UpdateStatus", new
+        var results = await _e.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.Entry_UpdateStatus", new
         {
-            id = entry.Id,
-            date = statusDate,
+            entryUid = entry.Uid,
             isCleared = entry.IsCleared,
             isActive = entry.IsActive,
         }, cancellationToken);
         return EntryTransactionDto.ToDomainModel(results);
     }
 
-    public async Task<Entry?> GetById(long id, CancellationToken cancellationToken = default)
+    public async Task<Entry?> GetByUid(Guid uid, CancellationToken cancellationToken = default)
     {
-        var results = await E.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.EntryTransaction_GetByEntryId", new
+        var results = await _e.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.EntryTransaction_GetByEntryUid", new
         {
-            entryId = id,
+            entryUid = uid,
         }, cancellationToken);
         return EntryTransactionDto.ToDomainModel(results);
     }
 
-    public async Task<IReadOnlyCollection<Entry>> GetPageByAccount(Guid accountId, int skip, int take, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyCollection<Entry>> GetPageByAccount(Guid accountUid, int skip, int take, CancellationToken cancellationToken = default)
     {
-        var results = await E.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.EntryTransaction_GetPageByAccount", new
+        var results = await _e.QueryAsync<EntryTransactionDto>(DbConstants.ConnectionStringName, "entries.EntryTransaction_GetPageByAccount", new
         {
-            accountId,
+            accountUid,
             skip,
-            take
+            take,
         }, cancellationToken);
         return results.GroupBy(r => r.EntryId).Select(r => EntryTransactionDto.ToDomainModel(r)!).ToList();
     }

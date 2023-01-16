@@ -25,28 +25,27 @@ public static class EnumerableToTvpExtensions
     {
         var table = new DataTable();
 
-        table.Columns.Add(new DataColumn("CategoryId", typeof(int)) { AllowDBNull = true, });
+        table.Columns.Add(new DataColumn("CategoryUid", typeof(int)) { AllowDBNull = true, });
         table.Columns.Add(new DataColumn("Amount", typeof(decimal)) { AllowDBNull = false, });
-        table.Columns.Add(new DataColumn("CurrencyCode", typeof(string)) { AllowDBNull = false, });
         table.Columns.Add(new DataColumn("Memo", typeof(string)) { AllowDBNull = true, });
 
         foreach (var txn in transactions)
-            table.Rows.Add(txn.Category?.Id ?? Convert.DBNull, txn.Amount, txn.CurrencyCode, txn.Memo ?? Convert.DBNull);
+            table.Rows.Add(txn.Category?.Uid ?? Convert.DBNull, txn.Amount, txn.Memo ?? Convert.DBNull);
 
         return table;
     }
 
     public static SqlMapper.ICustomQueryParameter ToTableValuedParameter(this IEnumerable<Guid> ids)
-        => ToDataTable(ids).AsTableValuedParameter("[dbo].[GuidIdRequest]");
+        => ToDataTable(ids, "Uid").AsTableValuedParameter("[dbo].[GuidIdRequest]");
 
     public static SqlMapper.ICustomQueryParameter ToTableValuedParameter(this IEnumerable<int> ids)
-        => ToDataTable(ids).AsTableValuedParameter("[dbo].[IntIdRequest]");
+        => ToDataTable(ids, "Id").AsTableValuedParameter("[dbo].[IntIdRequest]");
 
-    internal static DataTable ToDataTable<T>(IEnumerable<T> ids) where T : struct
+    internal static DataTable ToDataTable<T>(IEnumerable<T> ids, string columnName) where T : struct
     {
         var table = new DataTable();
 
-        table.Columns.Add(new DataColumn("Id", typeof(T)) { AllowDBNull = false, });
+        table.Columns.Add(new DataColumn(columnName, typeof(T)) { AllowDBNull = false, });
 
         foreach (var slug in ids)
             table.Rows.Add(slug);

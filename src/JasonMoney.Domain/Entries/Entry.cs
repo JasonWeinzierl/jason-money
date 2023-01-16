@@ -7,12 +7,11 @@ using System.Linq;
 namespace JasonMoney.Domain.Entries;
 
 public record Entry(
-    long Id,
+    Guid Uid,
     DateTimeOffset Date,
-    Guid AccountId,
+    Guid AccountUid,
     Payee? Payee,
-    Guid? TransferAccountId,
-    DateTimeOffset StatusDate, // TODO: split status into a separate object?  into a list, like transaction? with another event table?
+    Guid? TransferAccountUid,
     bool IsCleared,
     bool IsActive,
     IReadOnlyCollection<EntryTransaction> Transactions)

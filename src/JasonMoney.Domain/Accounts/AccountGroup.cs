@@ -1,5 +1,7 @@
-﻿namespace JasonMoney.Domain.Accounts;
+﻿using System;
+
+namespace JasonMoney.Domain.Accounts;
 
 public record AccountGroup(
-    int Id,
+    Guid Uid,
     string Name);
