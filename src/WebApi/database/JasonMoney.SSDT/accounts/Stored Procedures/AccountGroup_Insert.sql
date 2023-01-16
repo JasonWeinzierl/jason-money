@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [accounts].[AccountGroup_Insert]
     @groupUid UNIQUEIDENTIFIER,
-    @name NVARCHAR(4000)
+    @name VARCHAR(4000)
 AS
 BEGIN;
     SET XACT_ABORT, NOCOUNT ON;

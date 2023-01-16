@@ -5,7 +5,7 @@
 	[CategoryId] INT NULL,
 	
 	[Amount] MONEY NOT NULL,
-	[Memo] NVARCHAR(MAX) NULL,
+	[Memo] VARCHAR(MAX) NULL,
 
 	CONSTRAINT FK_EntryTransaction_EntryRevision FOREIGN KEY ([EntryRevisionId])
 		REFERENCES [entries].[EntryRevision] ([Id])

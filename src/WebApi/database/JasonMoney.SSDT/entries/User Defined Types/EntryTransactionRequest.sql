@@ -2,5 +2,5 @@
 (
 	[CategoryUid] UNIQUEIDENTIFIER NULL,
 	[Amount] MONEY NOT NULL,
-	[Memo] NVARCHAR(MAX) NULL
+	[Memo] VARCHAR(MAX) NULL
 );

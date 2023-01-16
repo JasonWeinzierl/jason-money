@@ -4,11 +4,11 @@
 	[DateRevised] DATETIMEOFFSET NOT NULL CONSTRAINT DF_AccountRevision_DateRevised DEFAULT SYSDATETIMEOFFSET(),
 	[AccountId] INT NOT NULL,
 
-	[Name] NVARCHAR(4000) NOT NULL,
+	[Name] VARCHAR(4000) NOT NULL,
 	[GroupId] INT NULL,
 	[BankSwift] CHAR(11) NULL,
-	[ExternalId] NVARCHAR(MAX) NULL,
-	[Description] NVARCHAR(MAX) NULL,
+	[ExternalId] VARCHAR(MAX) NULL,
+	[Description] VARCHAR(MAX) NULL,
 
 	CONSTRAINT FK_AccountRevision_Account FOREIGN KEY ([AccountId])
         REFERENCES [accounts].[Account] ([Id])

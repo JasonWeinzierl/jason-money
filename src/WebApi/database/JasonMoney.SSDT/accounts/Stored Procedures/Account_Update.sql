@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [accounts].[Account_Update]
 	@accountUid UNIQUEIDENTIFIER,
 
-	@name NVARCHAR(4000),
+	@name VARCHAR(4000),
 	@groupUid UNIQUEIDENTIFIER NULL,
 	@bankSwift CHAR(11) NULL,
-	@externalId NVARCHAR(MAX) NULL,
-	@description NVARCHAR(MAX) NULL
+	@externalId VARCHAR(MAX) NULL,
+	@description VARCHAR(MAX) NULL
 AS
 BEGIN
     SET XACT_ABORT, NOCOUNT ON;

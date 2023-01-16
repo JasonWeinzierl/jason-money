@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [accounts].[_SetGroupRevision]
 	@groupId INT,
-	@name NVARCHAR(4000)
+	@name VARCHAR(4000)
 AS
 BEGIN
 	INSERT INTO

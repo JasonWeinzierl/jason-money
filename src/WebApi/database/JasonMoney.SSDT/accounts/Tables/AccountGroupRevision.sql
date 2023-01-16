@@ -4,7 +4,7 @@
 	[DateRevision] DATETIMEOFFSET NOT NULL CONSTRAINT DF_AccountGroupRevision_DateRevision DEFAULT SYSDATETIMEOFFSET(),
 	[GroupId] INT NOT NULL,
 
-	[Name] NVARCHAR(4000) NOT NULL,
+	[Name] VARCHAR(4000) NOT NULL,
 
 	CONSTRAINT FK_AccountGroupRevision_AccountGroup FOREIGN KEY ([GroupId])
 		REFERENCES [accounts].[AccountGroup] ([Id])

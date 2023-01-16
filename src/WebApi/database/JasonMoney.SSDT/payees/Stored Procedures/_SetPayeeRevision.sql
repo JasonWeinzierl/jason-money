@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [payees].[_SetPayeeRevision]
 	@payeeId BIGINT,
-	@name NVARCHAR(MAX)
+	@name VARCHAR(MAX)
 AS
 BEGIN;
 	INSERT INTO

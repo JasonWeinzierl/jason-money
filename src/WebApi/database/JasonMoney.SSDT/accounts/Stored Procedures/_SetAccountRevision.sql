@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [accounts].[_SetAccountRevision]
 	@accountId INT,
 
-	@name NVARCHAR(4000),
+	@name VARCHAR(4000),
 	@groupId INT NULL,
 	@bankSwift CHAR(11) NULL,
-	@externalId NVARCHAR(MAX) NULL,
-	@description NVARCHAR(MAX) NULL
+	@externalId VARCHAR(MAX) NULL,
+	@description VARCHAR(MAX) NULL
 AS
 BEGIN
 	INSERT INTO

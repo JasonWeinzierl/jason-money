@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [categories].[Category_Insert]
 	@categoryUid UNIQUEIDENTIFIER,
 	
-	@name NVARCHAR(4000),
-	@subname NVARCHAR(4000) NULL
+	@name VARCHAR(4000),
+	@subname VARCHAR(4000) NULL
 AS
 BEGIN
 	SET XACT_ABORT, NOCOUNT ON;

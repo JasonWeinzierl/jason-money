@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [payees].[Payee_Insert]
     @payeeUid UNIQUEIDENTIFIER,
-	@name NVARCHAR(MAX)
+	@name VARCHAR(MAX)
 AS
 BEGIN;
 	SET XACT_ABORT, NOCOUNT ON;

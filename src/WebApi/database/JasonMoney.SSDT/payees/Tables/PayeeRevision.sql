@@ -4,7 +4,7 @@
 	[DateRevised] DATETIMEOFFSET NOT NULL CONSTRAINT DF_PayeeRevision_DateRevised DEFAULT SYSDATETIMEOFFSET(),
 	[PayeeId] BIGINT NOT NULL,
 
-	[Name] NVARCHAR(MAX) NOT NULL,
+	[Name] VARCHAR(MAX) NOT NULL,
 
 	CONSTRAINT FK_PayeeRevision_Payee FOREIGN KEY ([PayeeId])
 		REFERENCES [payees].[Payee] ([Id])
