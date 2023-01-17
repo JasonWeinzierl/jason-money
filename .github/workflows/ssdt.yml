@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - database/**
+      - src/WebApi/database/**
 
 jobs:
   build:

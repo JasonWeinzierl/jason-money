@@ -5,8 +5,10 @@ on:
     branches:
       - main
     paths:
-      - '*.sln'
-      - src/**
+      - src/WebApi/src/**
+      - src/WebApi/test/**
+      - src/WinDesktop/src/**
+      - src/WinDesktop/test/**
 
 jobs:
   build:
